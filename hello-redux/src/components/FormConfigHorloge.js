@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { horlogeModifyDelay, horlogeModifyFormat } from '../actions/horloge';
 
 export class FormConfigHorloge extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      delay: 1000,
-      format: 'HH:mm:ss',
+      delay: props.delay || 1000,
+      format: props.format || 'HH:mm:ss',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,8 +27,8 @@ export class FormConfigHorloge extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onChangeDelay(this.state.delay);
-    this.props.onChangeFormat(this.state.format);
+    this.props.dispatch(horlogeModifyDelay(this.state.delay));
+    this.props.dispatch(horlogeModifyFormat(this.state.format));
   }
 
   render() {
@@ -45,8 +45,3 @@ export class FormConfigHorloge extends Component {
     );
   }
 }
-
-FormConfigHorloge.propTypes = {
-  onChangeDelay: PropTypes.func.isRequired,
-  onChangeFormat: PropTypes.func.isRequired,
-};

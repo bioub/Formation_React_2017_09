@@ -10,6 +10,7 @@ class App extends Component {
       delay: 1000,
     };
     this.handleChangeDelay = this.handleChangeDelay.bind(this);
+    this.handleChangeFormat = this.handleChangeFormat.bind(this);
   }
 
   handleChangeDelay(delay) {
@@ -18,12 +19,19 @@ class App extends Component {
     });
   }
 
+  handleChangeFormat(format) {
+    this.setState({
+      format,
+    });
+  }
+
   render() {
     return (
       <div>
         <HelloDesactivable name="Romain"/>
-        <HorlogeDesactivable format="HH:mm:ss:S" delay={this.state.delay}/>
-        <FormConfigHorlogeDesactivable onChangeDelay={this.handleChangeDelay}/>
+        <HorlogeDesactivable format={this.state.format} delay={this.state.delay}/>
+        <FormConfigHorlogeDesactivable onChangeDelay={this.handleChangeDelay}
+                                       onChangeFormat={this.handleChangeFormat}/>
       </div>
     );
   }

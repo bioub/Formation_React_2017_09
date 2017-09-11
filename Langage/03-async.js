@@ -2,7 +2,7 @@ const fs = require('fs');
 const util = require('util');
 
 const logSync = (path, msg) => {
-    fs.appendFileSync(path, (new Date()) + msg + '\n');
+    fs.appendFileSync(path, (new Date()).toLocaleString() + ' : ' + msg + '\n');
 };
 
 const exempleSync = () => {
@@ -31,7 +31,7 @@ console.timeEnd('exempleSync()');
 */
 
 const logAsync = (path, msg, cb) => {
-    fs.appendFile(path, (new Date()) + msg + '\n', cb);
+    fs.appendFile(path, (new Date()).toLocaleString() + ' : ' + msg + '\n', cb);
 };
 
 const exempleAsync = (cb) => {
@@ -76,7 +76,7 @@ console.timeEnd('exempleAsync()');
 
 const logPromise = (path, msg) => {
     return new Promise((resolve, reject) => {
-        fs.appendFile(path, (new Date()) + msg + '\n', (err) => {
+        fs.appendFile(path, (new Date()).toLocaleString() + ' : ' + msg + '\n', (err) => {
             if (err) {
                 return reject(err);
             }
